@@ -79,9 +79,9 @@ def load_ratings():
     for row in open("seed_data/u.data"):
         user_id, movie_id, score, _ = row.split()
 
-        rating = Rating(movie_id=movie_id,
-                        user_id=user_id,
-                        score=score)
+        rating = Rating(movie_id=int(movie_id),
+                        user_id=int(user_id),
+                        score=int(score))
         
         db.session.add(rating)
     
