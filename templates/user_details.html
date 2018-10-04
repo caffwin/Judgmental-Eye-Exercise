@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<div>
+
+    {% if 'user_id' not in session %}
+        <form action='/register' method='GET'>
+            <input type='submit' id="logInButton" value='Log In'>
+        </form>
+    {% else %}
+        <form action='/unregister' method='GET'>
+            <input type='submit' id='logOutButton' value='Log Out'>
+        </form>
+    {% endif %}
+
+  </div>
+  <hr>
+
+<h1>User Details</h1>
+
+<!-- age, zipcode, list of moves rated & scores for each rating, email -->
+
+<h2>{{ user.email }}</h2>
+
+<p>{{ user.email }} is {{ user.age }} years old and lives at {{ user.zipcode }}!</p>
+
+<p>List of movies rated:</p>
+
+
+
+{% endblock %}
