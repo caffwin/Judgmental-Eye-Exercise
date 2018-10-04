@@ -53,10 +53,14 @@ def register_process():
             flash("Incorrect Password")
 
     else: 
-        print("Username not recognized")
-        flash("Username not found")
+        print("Username added")
+        flash("Username added")
+        user = User(email=username, password=password)
+        db.session.add(user)
+        db.session.commit()
 
-    # sessions[''] = 
+        session['user_id'] = user.user_id 
+
 
     return redirect('/')
 
@@ -74,6 +78,12 @@ def user_list():
     users = User.query.all()
     return render_template("users_list.html", users=users)
 
+
+@app.route('/users/<user_id>')
+def show_user_details(user_id):
+
+    user = User.query.get(user_id)
+    return render_template('user_details.html', user=user)
 
 if __name__ == "__main__":
     # We have to set debug=True here, since it has to be True at the
