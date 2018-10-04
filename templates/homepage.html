@@ -1,5 +1,21 @@
 {% extends 'base.html' %}
+
+
 {% block content %}
+<div>
+
+    {% if 'user_id' not in session %}
+        <form action='/register' method='GET'>
+            <input type='submit' id="logInButton" value='Log In'>
+        </form>
+    {% else %}
+        <form action='/unregister' method='GET'>
+            <input type='submit' id='logOutButton' value='Log Out'>
+        </form>
+    {% endif %}
+
+  </div>
+  <hr>
 
 <h1>Ratings</h1>
 

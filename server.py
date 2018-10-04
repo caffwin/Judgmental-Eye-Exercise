@@ -23,6 +23,10 @@ app.jinja_env.undefined = StrictUndefined
 @app.route('/')
 def index():
     """Homepage."""
+    if 'user_id' in session:
+        print('user id ' + str(session['user_id']) + 'is logged in')
+    else:
+        print('no one is logged in')
     return render_template('homepage.html')
 
 @app.route('/register', methods=['GET'])
@@ -54,6 +58,13 @@ def register_process():
 
     # sessions[''] = 
 
+    return redirect('/')
+
+@app.route('/unregister', methods=["GET"])
+def unregister_process():
+
+    # user_id = session['user_id']
+    del session['user_id']
     return redirect('/')
 
 @app.route("/users")
