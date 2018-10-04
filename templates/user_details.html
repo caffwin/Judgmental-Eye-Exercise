@@ -27,6 +27,7 @@
 
 <p>List of movies rated:</p>
 
-
-
+{% for rating in user.ratings %}
+    <p>{{ rating.movie.title }} (ID: {{ rating.movie_id }}): Score {{ rating.score }}</p>
+{% endfor %}
 {% endblock %}

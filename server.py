@@ -48,6 +48,8 @@ def register_process():
             flash("Logged in")
             session["user_id"] = user.user_id # saves to session
             # allows us to show user on any page
+            return redirect('/users/{}'.format(user.user_id))
+
         else: 
             print("Password does not match user!")
             flash("Incorrect Password")
@@ -60,7 +62,7 @@ def register_process():
         db.session.commit()
 
         session['user_id'] = user.user_id 
-
+        return redirect('/users/{}'.format(user.user_id))
 
     return redirect('/')
 
@@ -83,7 +85,9 @@ def user_list():
 def show_user_details(user_id):
 
     user = User.query.get(user_id)
+
     return render_template('user_details.html', user=user)
+
 
 if __name__ == "__main__":
     # We have to set debug=True here, since it has to be True at the
